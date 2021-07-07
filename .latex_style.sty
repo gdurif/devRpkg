@@ -3,5 +3,12 @@
 \let\orighref\href
 \renewcommand{\href}[2]{\orighref{#1}{#2$^{\,\text{\tiny\faExternalLink}}$}}
 
+% texttt redefinition (to add a background color)
+\usepackage{color}
+\definecolor{darkgray}{rgb}{0.6,0.5,0.5}
+\let\OldTexttt\texttt
+\renewcommand{\texttt}[1]{\textcolor{darkgray}{\OldTexttt{#1}}}
+
+
 % custom command
 \newcommand{\al}{\alert}

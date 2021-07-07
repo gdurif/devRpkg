@@ -10,4 +10,4 @@ License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 See the introduction in the `index` file ([md](./index.md) or [pdf](./index.pdf)).
 
-All other content are available in the [`content`](./content) directory.
+All other contents are available in the [`content`](./content) directory.

@@ -14,7 +14,7 @@ classoption: "aspectratio=169,12pt"
 
 Many [**hyperlinks**](https://en.wikipedia.org/wiki/Hyperlink) are directly embedded in the slide contents.
 
-## Requirements 1
+## Requirements (1)
 
 - [**R**](https://www.r-project.org/) (the latest version if possible\footnote{Keep your software up-to-date! If you need an older version of R for a specific project, use appropriate tools like containers, it should be an exception not a habit.}, `4.1.0` since 2021-05-18)\bigskip
 
@@ -24,7 +24,7 @@ Many [**hyperlinks**](https://en.wikipedia.org/wiki/Hyperlink) are directly embe
 
 - **Note for Windows users:** you can update R from within R with the [`installr`](https://www.r-project.org/nosvn/pandoc/installr.html) package and you will need to install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) to enable all R development functionality \bigskip
 
-## Requirements 2
+## Requirements (2)
 
 - See the script [`install_requirements.R`](./install_requirements.R) to install the packages that will be used in the tutorial \bigskip \bigskip
 
@@ -66,6 +66,7 @@ install.packages("devtools")
   - your project is structured (code, data, doc), easier to use and re-use \smallskip
   - documentation is essential (including for your future self)  \smallskip
   - your code is standardized, you can check it and test your functions \smallskip
+  - easy management of dependencies
   - etc.
 
 ## How to write an R package?
@@ -79,7 +80,7 @@ A wide variety of tools to help you:
 - Some packages to develop packages:\medskip
   - [`usethis`](https://usethis.r-lib.org): to automate package and project setup
   - [`devtools`](https://devtools.r-lib.org): complete collection of development tools 
-  - [`roxygen2`](https://roxygen2.r-lib.org): to document your code and generate man pages
+  - [`roxygen2`](https://roxygen2.r-lib.org): to document your code and generate help pages
   - [`testthat`](https://testthat.r-lib.org/): to implement automatic tests of your functions
   - [`remotes`](https://remotes.r-lib.org): to install package from anywhere (integrated in `devtools`)
   - [`rmarkdown`](https://rmarkdown.rstudio.com) and [`knitr`](https://yihui.org/knitr): to create detailed documentation materials and notebooks (code showcase)
