@@ -47,12 +47,12 @@ Many [**hyperlinks**](https://en.wikipedia.org/wiki/Hyperlink) are directly embe
 
 ## Where can I find R packages?
 
-- the [CRAN](https://cran.r-project.org/) (Comprehensive R Archive Network): official repository for R packages
+- the [`CRAN`](https://cran.r-project.org/) (Comprehensive R Archive Network): official repository for R packages
 ```R
 install.packages("devtools")
 ```
 
-- [bioconductor](https://www.bioconductor.org/): bioinformatics-oriented package repository \bigskip
+- [`bioconductor`](https://www.bioconductor.org/): bioinformatics-oriented package repository \bigskip
 
 - any git forge: github, gitlab \bigskip
 

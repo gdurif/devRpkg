@@ -530,6 +530,8 @@ Ref: <https://r-pkgs.org/workflows101.html#load-all>
 - in Rstudio interface (Build panel - More - Load all^[keyboard shortcut:
 `CTRL + SHIFT + L`])
 
+**Development cycle:** write code, test it, correct your code, test it, etc.
+
 ## build
 
 **Prepare your package for installation** (and distribution)
@@ -568,7 +570,9 @@ Ref: <https://r-pkgs.org/workflows101.html#load-all>
 
 ## usethis (exhaustive tour)
 
-See <https://usethis.r-lib.org/reference/index.html>
+See <https://usethis.r-lib.org/reference/index.html> \bigskip
+
+Possible to write every files manually for more advanced users.
 
 ## devtools (exhaustive tour)
 
