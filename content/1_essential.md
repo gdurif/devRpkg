@@ -19,9 +19,9 @@ If you are not working from Rstudio, you will not benefit from all its functiona
 
 ## Setup your environment
 
-- install R packages providing development tools^[`devtools` may require to install additional system libraries depending on your OS, a quick search on the web will help you if you encounter any error.]: `devtools`, `usethis`, `roxygen2`
+- install R packages providing development tools^[`devtools` may require to install additional system libraries depending on your OS, a quick search on the web will help you if you encounter any error.]: `devtools`, `usethis`, `roxygen2`, `lintr`
 ```R
-install.packages(c("devtools", "usethis", "roxygen2"))
+install.packages(c("devtools", "usethis", "roxygen2", "lintr"))
 ```
 
 - for a more complete setup: see <https://r-pkgs.org/setup.html>
@@ -109,6 +109,8 @@ Additional resources on software license:
 :::::: {.columns}
 ::: {.column width="50%"}
 
+Empty package:
+
 ```
 mypkg
 +-- DESCRIPTION
@@ -120,6 +122,9 @@ mypkg
 :::
 ::: {.column width="50%"}
 
+More complete package:
+
+\scriptsize
 ```
 mypkg2
 +-- data
@@ -143,7 +148,7 @@ mypkg2
 
 ## Files and sub-directories (2)
 
-- meta-data files: `DESCRIPTION` and `NAMESPACE` (c.f. later) \bigskip
+- Meta-data files: `DESCRIPTION` and `NAMESPACE` (c.f. later) \bigskip
 
 - `R` sub-directory: where to store R source files implementing the function included in your package \bigskip
 
@@ -153,7 +158,7 @@ mypkg2
 
 - `data` sub-directory (optional): where to store data files attached to your package \bigskip
 
-## Source code
+## R source code (1)
 
 The `R` sub-directory:
 
@@ -163,21 +168,88 @@ The `R` sub-directory:
 
 - Group related functions in the same file \bigskip
 
+- Create and edit source code files manually or with [`usethis::use_r("name")`](https://usethis.r-lib.org/reference/use_r.html) \bigskip
+
+- See [R code formatting convention](https://style.tidyverse.org/index.html) \bigskip
+
+- Check your code formatting with the [`lintr` package](https://cran.r-project.org/web/packages/lintr/readme/README.html) and `lintr::lint_package()` \bigskip
+
+## R source code (2)
+
 **Debugging-friendly advice:**
 
 - Avoid very long functions (split long functions into several shorter ones) \bigskip
 
 - Factorize re-used code into specific functions (avoid copying-pasting chunk of codes several time) \bigskip
 
+## From R scripts to R functions
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+Scripting:
+\scriptsize
+```R
+# data
+a = 7
+b = 3
+# intermediate operations
+tmp1 = 2 * a
+tmp2 = b / 6
+# final computations
+c = tmp1 + tmp2
+```
+\normalsize
+
+
+**Objective:** simplify your code by "hiding" intermediate steps into a function
+
+:::
+::: {.column width="50%"}
+
+Implementing functions in your package:
+\scriptsize
+```R
+myFun <- function(x, y) {
+    tmp1 = 2 * x
+    tmp2 = y / 6
+    return(tmp1 + tmp2)
+}
+```
+\normalsize
+
+In a script using your package:
+\scriptsize
+```R
+library(mypkg)
+# data
+a = 7
+b = 3
+# computations
+c = myFun(a,b)
+d = myFun(10, 3)
+```
+
+:::
+::::::
+
 ## Meta-data files
 
 - `DESCRIPTION`: a structured text file giving information about your package (title, [description](https://r-pkgs.org/description.html#pkg-description), [authors](https://r-pkgs.org/description.html#author), [license](https://r-pkgs.org/description.html#description-license), [dependencies](https://r-pkgs.org/description.html#dependencies), etc.) \bigskip
 
-- `NAMESPACE`: a text file indicating names of R objects (functions, datasets) that are imported in your package (from other packages), and/or exported by your package (to be usable when you install your package), and/or the name of dynamic library related to compiled code to be used in your package  \bigskip
+- `NAMESPACE`: a text file indicating^[and/or the name of the dynamic library related to compiled codes to be used in your package if relevant] names of R objects (functions, datasets) that are imported in your package (from other packages), and/or exported by your package (to be usable when you install your package)  \bigskip
 
-## DESCRIPTION file
+## DESCRIPTION file (1)
 
-Can be edited manually, or created and modified with [`usethis::use_description()`](https://usethis.r-lib.org/reference/use_description.html) and other [`usethis::use_XXX()`](https://usethis.r-lib.org/reference/index.html) \bigskip
+- Can be edited manually, or created and modified with [`usethis::use_description()`](https://usethis.r-lib.org/reference/use_description.html) and other [`usethis::use_XXX()`](https://usethis.r-lib.org/reference/index.html) \bigskip
+
+- Setup your package requirements and dependencies (c.f. later) \bigskip
+
+- More details at https://r-pkgs.org/description.html \bigskip
+
+- **Important**: [package versioning](https://semver.org/)
+
+## DESCRIPTION file (2)
 
 Example:
 \tiny
@@ -202,7 +274,7 @@ RoxygenNote: 7.1.1
 
 ## NAMESPACE file
 
-Can be created with [`usethis::use_namespace()`](https://usethis.r-lib.org/reference/use_namespace.html), or edited manually, or (better) automatically updated thanks to [`roxygen2` inline documentation](https://roxygen2.r-lib.org/articles/namespace.html) (c.f. later) \bigskip
+Can be created with [`usethis::use_namespace()`](https://usethis.r-lib.org/reference/use_namespace.html), or edited manually, or (better) **automatically updated** thanks to [`roxygen2` inline documentation](https://roxygen2.r-lib.org/articles/namespace.html) (c.f. later) \bigskip
 
 Example:
 \footnotesize
@@ -213,46 +285,293 @@ importFrom(stats, runif)
 export(my_function)
 ```
 
-## data in your package
+## Data in your package
 
-## help pages and documentation
+- Binary R data file (`.Rda` or `.Rdata` file) can be stored in the `data` sub-directory \bigskip
 
-inline code documentation with `roxygen2`
+- Raw data can be stored in the `inst` sub-directory and found after installation with the `system.file()` function^[any other file or sub-directory shipped with a package can be found likewise] (**important**: you do not need to search for the `inst` sub-directory, just anything in it)
+```R
+system.file(filename, package = "mypkg")
+system.file(dirname, package = "mypkg")
+system.file(package = "mypkg") # package root directory
+```
 
-https://roxygen2.r-lib.org/articles/rd-formatting.html
+- More at <https://r-pkgs.org/data.html> \bigskip
 
-https://roxygen2.r-lib.org/articles/rd.html
+## help/man pages
 
-cheat cheet https://roxygen2.r-lib.org/articles/formatting.html
+- Available with the R commands `?function_name` (e.g. `?rnorm`) or `help(function_name)` \bigskip
 
-## other files, directories
+- Content:
+  - usage description and functioning details
+  - input arguments and return value description
+  - function authorship
+  - link to related functions
+  - bibliographic reference
+  - minimum working examples \bigskip
 
-- `src`: c.f. later
+- Encoded in `.Rd` files in the `man` sub-directory: structured text files with a specific syntax
 
-- non-standard files (use `.Rbuildignore`)
+## Document your code and generate help page at once
+
+- Avoid creating and editing `.Rd` file manually (laborious) \bigskip
+
+- Good practice: **DOCUMENT YOUR CODE** (with inline comments) for other and YOUR FUTURE SELF \bigskip
+
+- Inline code documentation with [`roxygen2`](https://roxygen2.r-lib.org) based on tags identified with `@`
+
+## Document your code and your package with roxygen2 (1)
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+Inline code documentation (identified with `#'` comment characters):
+\scriptsize
+```R
+#' Add together two numbers
+#'
+#' @param x A number
+#' @param y A number
+#' @return The sum of \code{x} and \code{y}
+#' @author Anonymous
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+#' @export
+add <- function(x, y) {
+  x + y
+}
+```
+
+:::
+::: {.column width="50%"}
+
+Corresponding `.Rd` file:
+\tiny
+```
+% Generated by roxygen2 (3.2.0): do not edit by hand
+\name{add}
+\alias{add}
+\title{Add together two numbers}
+\usage{
+add(x, y)
+}
+\arguments{
+  \item{x}{A number}
+
+  \item{y}{A number}
+}
+\value{
+The sum of \code{x} and \code{y}
+}
+\description{
+Add together two numbers
+}
+\examples{
+add(1, 1)
+add(10, 1)
+}
+```
+
+:::
+::::::
+
+## Document your code and your package with roxygen2 (2)
+
+- **Generate the man pages** (and update `NAMESPACE` file) with [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) or in Rstudio interface (Build panel - More - Document^[keyboard shortcut:
+`CTRL + SHIFT + D`]) \bigskip
+
+- Identify exported functions^[your functions that will be available to users] with the tag `@export` (automatically added to the `NAMESPACE` file) \bigskip
+
+- Identify imported functions^[functions from other packages that you use] with the tag `@importFrom package function` (automatically added to the `NAMESPACE` file) \bigskip
+
+## Document your code and your package with roxygen2 (4)
+
+:::::: {.columns}
+::: {.column width="35%"}
+
+More complete example:
+
+\tiny
+```R
+#' A function to do some stuff
+#' @description
+#' Do some stuff
+#' @details
+#' I do the stuff in a complicated way.
+#' @param x A number
+#' @param y A number
+#' @return what the function is returning
+#' @author Someone
+#' @importFrom stats rnorm
+#' @seealso [mypkg::my_other_fun()]
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+#' @export
+my_fun <- function(x, y) {
+    tmp = rnorm(7)
+    ...
+}
+```
+
+:::
+::: {.column width="65%"}
+
+Tips:
+
+- add `Roxygen: list(markdown = TRUE)` to the `DESCRIPTION` file to use markdown syntax in documentation chunks or run [`usethis::use_roxygen_md`](https://usethis.r-lib.org/reference/use_roxygen_md.html) (possible conversion from existing standard `roxygen2` syntax with [`roxygen2md`](https://roxygen2md.r-lib.org) package) \bigskip
+
+- internal functions (only used by other functions in your package, and not to be available for users) can be tagged with `@keywords internal` and (and without `@export` tag)
+
+:::
+::::::
+
+## Document your code and your package with roxygen2 (5)
+
+References:
+
+- More details at <https://r-pkgs.org/man.html> \bigskip
+- [`roxygen2` cheat sheet](https://roxygen2.r-lib.org/articles/formatting.html)\bigskip
+- Help to format your documentation chunks at <https://roxygen2.r-lib.org/articles/rd-formatting.html> and <https://roxygen2.r-lib.org/articles/rd.html>
+
+
+## Manage your dependencies (1)
+
+\footnotesize
+
+Several fields in the `DESCRIPTION` file:
+
+- `Depends: R (>= 3.1.0)`: the minimal R version required by your package \medskip
+
+- `Imports: ...`: packages (with optional minimal versions) required for your package to work \medskip
+
+- `Suggests: ...` (optional): additional packages (with optional minimal versions) that are not necessary for your package to work but that would improve the user experience with your package \medskip
+
+- Additional (optional) fields: `LinkingTo` (useful if external codes needs to be compiled and linked against external library), `OS_type: unix` (to specify which OS are supported\footnote{here it means that Windows is not supported}), `SystemRequirements: C++11` (to specify additional external system requirements\footnote{here a C++ compiler compatible with C++11 standard}) \medskip
+
+## Manage your dependencies (2)
+
+Example:
+```
+Depends: R (>= 3.1.0)
+LinkingTo:
+    Rcpp (>= 1.0.1), 
+    RcppEigen (>= 0.3.3.5)
+Imports:
+    Rcpp (>= 1.0.1),
+    openssl
+Suggests: 
+    testthat (>= 2.1.0)
+SystemRequirements: C++11
+```
+
+
+## Manage your dependencies (3)
+
+- [`usethis::use_package()`](https://usethis.r-lib.org/reference/use_package.html) to update `Imports` or `Sugggests` fields \bigskip
+
+- More details at <https://r-pkgs.org/description.html#dependencies>
+
+## Manage your dependences (4)
+
+Imported objects (functions, dataset) should be declared in the `NAMESPACE` file \bigskip
+
+$\rightarrow$ automatically manage thanks to `roxygen2`
+
+## Other (optional) files and sub-directories (1)
+
+- `README`^[possible format: `.md` or `.Rmd` (Rmarkdown), see [`usethis::use_readme_md()` or `usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html)], `LICENSE` (depending on the license your choose), `COPYRIGHT` (to detail authorship, copyright associated to the package content) \bigskip
+
+- [`src`](https://r-pkgs.org/src.html): source codes to be compiled (c.f. later) \bigskip
+
+- [`inst`](https://r-pkgs.org/inst.html) to store additional files (e.g. required for tests, vignettes, etc.), raw data, etc. \bigskip
+
+- [`tests`](https://r-pkgs.org/tests.html) to write automatic tests (c.f. later) \bigskip
+
+## Other (optional) files and sub-directories (2)
+
+- More details at <https://r-pkgs.org/misc.html> \bigskip
+
+- Non-standard files can be present in your project but not shipped in your package: you should create a [`.Rbuildignore`](https://r-pkgs.org/package-structure-state.html#rbuildignore) file \bigskip
 
 # Workflow
 
-## document
+## Package state
+
+- **source:** what you are writing \bigskip
+- **bundled:** a single-file compressed version containing your package source (how package are shipped by the CRAN for installation) \bigskip
+- **binary:** a single-file binary version of your package containing compiled library (if relevant), mainly used by the CRAN to ship package for installation on Windows\bigskip
+- **installed:** available as a library on your system, i.e. the package files and sub-directories (along with library files if compilation was needed) have been copied somewhere on your computer \bigskip
+- **in-memory:** loaded and ready to use (after calling `library(mypkg)`)
+
+## Dev workflow (building and installing a package)
+
+\centering
+\includegraphics[width=\textwidth]{figs/install_r_pkg}
+
+\tiny 
+Ref: <https://r-pkgs.org/package-structure-state.html>
+
+## Dev workflow (loading a package)
+
+\centering
+\includegraphics[width=\textwidth]{figs/load_r_pkg}
+
+\tiny 
+Ref: <https://r-pkgs.org/workflows101.html#load-all>
+
+## load
+
+**Load your package** for a test drive (manual test) without building/installing it
+
+- [`devtools::load_all()`](https://devtools.r-lib.org/reference/load_all.html) \bigskip
+
+- in Rstudio interface (Build panel - More - Load all^[keyboard shortcut:
+`CTRL + SHIFT + L`])
 
 ## build
 
+**Prepare your package for installation** (and distribution)
+
+- [`devtools::build()`](https://devtools.r-lib.org/reference/build.html) \bigskip
+
+- in Rstudio interface (Build panel - More - "Build source package") \bigskip
+
+- R built-in shell command line tool^[`R.exe` on Windows]: `R CMD build mypkg` \bigskip
+
+- Create a `.tar.gz` archive files containing the sources (or a `.zip` file if you use "Build binary package") ready for installation \bigskip
+
+
+## document
+
+**Generate the man pages** (and update `NAMESPACE` file)
+
+- [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) \bigskip
+
+- in Rstudio interface (Build panel  More - Document^[keyboard shortcut:
+`CTRL + SHIFT + D`])
+
 ## check
 
-## usethis 101
+**Verify** that your **package is functional** and that your **package structure is correct**
 
-https://usethis.r-lib.org/reference/index.html
+- [`devtools::check()`](https://devtools.r-lib.org/reference/check.html) \bigskip
 
-## Devtools 101
+- in Rstudio interface (Build panel - Check) \bigskip
 
-create, build, check, load_all, install, document, test
+- R built-in shell command line tool^[`R.exe` on Windows]: `R CMD check mypkg_1.0.0.tag.gz` \bigskip
 
-## package state
+- **Verbose output**: often clearly identify problems (and suggest fixes) \bigskip
 
-- source
-- bundled
-- binary
-- installed
-- in-memory
+- More details at <https://r-pkgs.org/r-cmd-check.html> \bigskip
 
-https://r-pkgs.org/package-structure-state.html
+## usethis (exhaustive tour)
+
+See <https://usethis.r-lib.org/reference/index.html>
+
+## devtools (exhaustive tour)
+
+See <https://devtools.r-lib.org/reference/index.html> \bigskip
+
+(`devtools` exports several functions from other development-oriented packages)
