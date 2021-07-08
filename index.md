@@ -37,7 +37,7 @@ Many [**hyperlinks**](https://en.wikipedia.org/wiki/Hyperlink) are directly embe
 - [Hadley Wickham](http://had.co.nz/) and [Jenny Bryan](https://jennybryan.org/) **book**: _R packages_ ([web version](https://r-pkgs.org/) and [sources](https://github.com/hadley/r-pkgs)) \bigskip
 - [Hilary Parker](https://hilaryparker.com)
 [**tutorial** on writing R packages](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) \bigskip
-- [R studio **cheatsheets**](https://github.com/rstudio/cheatsheets) on [package development](https://raw.githubusercontent.com/rstudio/cheatsheets/master/package-development.pdf) and [Rstudio IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
+- [Rstudio **cheatsheets**](https://github.com/rstudio/cheatsheets) on [package development](https://raw.githubusercontent.com/rstudio/cheatsheets/master/package-development.pdf) and [Rstudio IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
 
 ## What is an R package?
 

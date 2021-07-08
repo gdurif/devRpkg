@@ -420,7 +420,7 @@ my_fun <- function(x, y) {
 
 Tips:
 
-- add `Roxygen: list(markdown = TRUE)` to the `DESCRIPTION` file to use markdown syntax in documentation chunks or run [`usethis::use_roxygen_md`](https://usethis.r-lib.org/reference/use_roxygen_md.html) (possible conversion from existing standard `roxygen2` syntax with [`roxygen2md`](https://roxygen2md.r-lib.org) package) \bigskip
+- add `Roxygen: list(markdown = TRUE)` to the `DESCRIPTION` file to use markdown syntax in documentation chunks or run [`usethis::use_roxygen_md()`](https://usethis.r-lib.org/reference/use_roxygen_md.html) (possible conversion from existing standard `roxygen2` syntax with [`roxygen2md`](https://roxygen2md.r-lib.org) package) \bigskip
 
 - internal functions (only used by other functions in your package, and not to be available for users) can be tagged with `@keywords internal` and (and without `@export` tag)
 
@@ -532,6 +532,15 @@ Ref: <https://r-pkgs.org/workflows101.html#load-all>
 
 **Development cycle:** write code, test it, correct your code, test it, etc.
 
+## document (reminder)
+
+**Generate the man pages** (and update `NAMESPACE` file)
+
+- [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) \bigskip
+
+- in Rstudio interface (Build panel  More - Document^[keyboard shortcut:
+`CTRL + SHIFT + D`])
+
 ## build
 
 **Prepare your package for installation** (and distribution)
@@ -543,16 +552,6 @@ Ref: <https://r-pkgs.org/workflows101.html#load-all>
 - R built-in shell command line tool^[`R.exe` on Windows]: `R CMD build mypkg` \bigskip
 
 - Create a `.tar.gz` archive files containing the sources (or a `.zip` file if you use "Build binary package") ready for installation \bigskip
-
-
-## document
-
-**Generate the man pages** (and update `NAMESPACE` file)
-
-- [`devtools::document()`](https://devtools.r-lib.org/reference/document.html) \bigskip
-
-- in Rstudio interface (Build panel  More - Document^[keyboard shortcut:
-`CTRL + SHIFT + D`])
 
 ## check
 
