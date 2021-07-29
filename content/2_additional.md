@@ -11,7 +11,14 @@ output:
 classoption: "aspectratio=169,12pt"
 ---
 
-# Note
+# Getting started
+
+## Additional R packages to help you create R packages
+
+- [`testthat`](https://testthat.r-lib.org/): to implement automatic tests of your functions \bigskip
+- [`remotes`](https://remotes.r-lib.org): to install package from anywhere (integrated in `devtools`) \bigskip
+- [`rmarkdown`](https://rmarkdown.rstudio.com) and [`knitr`](https://yihui.org/knitr): to create detailed documentation materials and notebooks (code showcase) \bigskip
+- [`pkgdown`](https://pkgdown.r-lib.org/) to create a website for your package \bigskip
 
 ## Setup your environment
 
@@ -20,18 +27,18 @@ classoption: "aspectratio=169,12pt"
 install.packages(c("testthat"))
 ```
 
-## Additional references regarding R programing
+## Additional references regarding R programming
 
 - [Hadley Wickham](http://had.co.nz/) **book**: _Advanced R_ ([web version](https://adv-r.hadley.nz) and [sources](https://github.com/hadley/adv-r))
 
-# Digression: Good practice for software development and programming
+# Digression: Good practice for software development and programming (not just in R)
 
 ## Good practice (1)
 
 - The code should be **human readable**^[being machine readable is necessary for the code to work but not sufficient] and **easily understandable** (use comments, code presentation and formatting)
   - Experiment: read your (5 weeks/months/years) old codes, are you sure that you will understand it? (worst with code written by others) \bigskip
 
-- Use a **versioning system** (e.g. [`git`](https://git-scm.com/book/) to manage your code evolution/version and for collaborative development \bigskip
+- Use a **versioning system** (e.g. [`git`](https://git-scm.com/book/)) to manage your code evolution/version and for collaborative development \bigskip
 
 ## Good practice (2)
 
@@ -53,7 +60,7 @@ An online server and/or website offering code/software development and managemen
 
 - versioning
 - collaborative work and planning
-- issue, feedback, bug reports
+- issue, feedback, bug reports, feature requests
 - software release/publication
 - continuous integration
 - possibility to get a publication identification like a DOI^[eventually externally with [Zenodo](https://zenodo.org/), c.f. later]
@@ -63,7 +70,7 @@ An online server and/or website offering code/software development and managemen
 
 Examples of software forge
 
-- `gitlab`: **free and open-source `git` forge hosting software** (different hosts are available: in the academic world^[e.g. <https://plmlab.math.cnrs.fr>, <https://gitlab.inria.fr>, etc.] or abroad^[e.g. <https:gitlab.com>] \medskip
+- `gitlab`: **free and open-source `git` forge hosting software** (different hosts are available: in the academic world^[e.g. <https://plmlab.math.cnrs.fr>, <https://gitlab.inria.fr>, etc.] or abroad^[e.g. <https://gitlab.com>]) \medskip
 - [`github`](https://github.com): **very popular**^[but owned by Microsoft] `git` forge with gratis and commercial solutions to host development projects (maybe more simple to reach outside the french academic community) \medskip
 - other: [`bitbucket`](https://bitbucket.org) \medskip
 
@@ -161,7 +168,7 @@ tests
 
 - **Note:** tests will be run during package check
 
-# Sharing is caring
+# Sharing (your code) is caring
 
 ## Publish and distribute your package
 
@@ -169,24 +176,24 @@ tests
 
 - Many repositories: the [CRAN](https://cran.r-project.org/) (official), [bioconductor](https://www.bioconductor.org/) (bioinformatics-oriented package repository) \bigskip
 
-- the [`remotes` package](https://remotes.r-lib.org/) (exported by `devtools`) can be used to install packages stored almost anywhere on the Internet (`CRAN`, `bioconductor`, `git` forges, etc.) \bigskip
+- the [`remotes` package](https://remotes.r-lib.org/) (exported by `devtools`) can be used to install packages stored almost anywhere on the Internet (`CRAN`, `bioconductor`, `git` forges, etc.) or locally \bigskip
 
 ## CRAN
 
-- [Strict policy to accept a package}(https://cran.r-project.org/web/packages/policies.html) \bigskip
+- [Strict policy to accept a package](https://cran.r-project.org/web/packages/policies.html) \bigskip
 
 - Pipeline
   1. [`devtools::build()`](https://devtools.r-lib.org//reference/build.html) (or `R CMD build`)
-  2, [`devtools::check()`](https://devtools.r-lib.org//reference/check.html) (or `R CMD check --as-cran`)
-  3. upload it to <https://cran.r-project.org/submit.html> \bigskip
+  2. [`devtools::check()`](https://devtools.r-lib.org//reference/check.html) (or `R CMD check --as-cran`)
+  3. upload it^[in bundle state] to <https://cran.r-project.org/submit.html> \bigskip
 
 - [`devtools::release()`](https://devtools.r-lib.org//reference/release.html) can help you to prepare the release (i.e. the version of your package that will be publish) \bigskip
 
 ## Reverse dependencies
 
-- **Important**: if you are releasing a new version of existing package, it is your responsability to check that it does not break downstream dependencies^[called "reverse dependencies"] (i.e. all packages that list your package in the `Depends`, `Imports`, `Suggests` or `LinkingTo fields`) \bigskip
+- **Important**: if you are releasing a new version of existing package, it is your responsibility to check that it does not break downstream dependencies^[called "reverse dependencies"] (i.e. all packages that list your package in the `Depends`, `Imports`, `Suggests` or `LinkingTo` fields) \bigskip
 
-- [`usethis::use_revdep()`](https://usethis.r-lib.org/reference/use_revdep.html) can help you in that task
+- [`usethis::use_revdep()`](https://usethis.r-lib.org/reference/use_revdep.html) to enable the [`revdepcheck` package](https://r-lib.github.io/revdepcheck/) that can help you in that task
 
 ## git
 
@@ -206,17 +213,17 @@ tests
 
 To install packages hosted on:
 
-- `github`: [`remotes::install_github()](https://remotes.r-lib.org/reference/install_github.html)
-- any `git` forge: [`remotes::install_git()](https://remotes.r-lib.org/reference/install_git.html)
+- `github`: [`remotes::install_github()`](https://remotes.r-lib.org/reference/install_github.html)
+- any `git` forge: [`remotes::install_git()`](https://remotes.r-lib.org/reference/install_git.html)
 
 Possibility to specify the branch, the sub-directory where to find the package, etc.
 
 ```R
-remotes::install_github("RcppCore/Rcpp")`
+remotes::install_github("RcppCore/Rcpp")
 
-devtools::install_git(
+remotes::install_git(
     "https://github.com/getkeops/keops",
-    subdir = "rkeops", branch = "dev" args="--recursive"
+    subdir = "rkeops", branch = "dev", args="--recursive"
 )
 ```
 
@@ -230,36 +237,305 @@ devtools::install_git(
 
 # Advanced documentation
 
-## writing a vignette
+## Writing a "vignette"
 
-https://r-pkgs.org/vignettes.html
+\small
 
-`usethis::use_vignette("my-vignette")`
+- A document^[See <https://r-pkgs.org/vignettes.html>] presenting/detailing your package (or a functionality in your package), included in the package (and visible on CRAN) \medskip
 
-https://rmarkdown.rstudio.com/
+- Written in a markup language: [`Rmarkdown`](https://rmarkdown.rstudio.com/)^[See also this [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)] to integrate R code chunks, or LaTeX or Markdown \medskip
 
-https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf
+- To create a vignette: `usethis::use_vignette("my-vignette")` \medskip
 
-## website
+- Possible to write multiple vignettes (e.g. [`Rcpp`](https://cran.r-project.org/package=Rcpp) package) \medskip
 
-build a website with `https://pkgdown.r-lib.org/`
+- **Rendering** (in pdf/html/etc.) with the package [`knitr`](https://yihui.org/knitr) \bigskip
 
-## continuous integration
+## Create a website
 
-use_gitlab_ci()
+\small
 
-use_github_actions()
+- Create and build a _standardized_ website for your package with [`pkgdown`](https://pkgdown.r-lib.org/)^[See also <https://github.com/r-lib/pkgdown>] \bigskip
+
+- Hostable on Github or Gitlab pages, or on your own webpage \bigskip
+
+- To create the website template: `usethis::use_pkgdown()` \bigskip
+
+- To build the website^[`README.md` become the homepage, `man` documentation are used to generate  function references, and vignettes are rendered into `articles`] (e.g. generate the HTML source): `pkgdown::build_site()` \bigskip
+
+- More details in the `pkgdown` [vignette](https://cran.r-project.org/web/packages/pkgdown/vignettes/pkgdown.html) \bigskip
+
+## Continuous Integration
+
+- Automate package testing and checking when you modify it \bigskip
+
+- Generally associated with a software forge \bigskip
+
+- See [`usethis::use_gitlab_ci()`](https://usethis.r-lib.org/reference/ci.html) or [`usethis::use_github_actions()`](https://usethis.r-lib.org/reference/github_actions.html) \bigskip
+
+- You define a set of actions (e.g. tests and checks) that are run after each commit, or before any pull/merge request (configurable)
 
 # Non R code
 
-## Rcpp
+## Rcpp: Seamless R and C++ Integration
 
-## reticulate (python)
+- See the [**Rcpp webpage**](https://github.com/RcppCore/Rcpp) and the [**introduction vignette**](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf) \medskip
 
-# control your R environment
+- C++ API to use R types and R like functions^[See the ["Rcpp-sugar" vignette](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-sugar.pdf)] in C++ \medskip
 
-## setup your environment
+- Automatic export of C++ functions to R^[See the ["Rcpp-attributes" vignette](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-attributes.pdf)] in particular when creating/building a package \medskip
 
-controler l'installation de package (.Renviron, .Rprofile)
+- Expose C++ functions and classes to R^[See the ["Rcpp-modules" vignette](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-modules.pdf)] \medskip
+
+- Conversion from C++ to R and back^[See the ["Rcpp-extending" vignette](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-extending.pdf)] \bigskip
+
+## Rcpp: compilation on the fly
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+In `convolve.cpp` file:
+
+\scriptsize
+```C++
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector convolveCpp(
+    NumericVector a, NumericVector b
+) {
+    int na = a.size(), nb = b.size();
+    int nab = na + nb - 1;
+    NumericVector xab(nab);
+    for (int i = 0; i < na; i++)
+        for (int j = 0; j < nb; j++)
+            xab[i + j] += a[i] * b[j];
+    return xab;
+}
+```
+
+:::
+::: {.column width="50%"}
+
+Compilation on the fly in R:
+```R
+sourceCpp("convolve.cpp")
+convolveCpp(x, y)
+```
+:::
+::::::
+
+## Rcpp in a package (1)
+
+- Create a Rcpp-based package template:
+
+```R
+Rcpp::Rcpp.package.skeleton("NewPackage", attributes = TRUE)
+```
+
+- All `C++` codes should be in the `src` sub-directory \bigskip
+
+- Add the comment `// [[Rcpp::export]]` before every C++ functions that should be exported to R \bigskip
+
+- Add `LinkingTo: Rcpp` in `DESCRIPTION` file \bigskip
+
+## Rcpp in a package (2)
+
+- To generate the C++ to R wrappers: `devtools::load_all()`^[Reminder: `CTRL + SHIFT + L`] or `devtools::build()` will call `Rcpp::compileAttributes()`^[or you can call it yourself] \bigskip
+
+- The files `src/RcppExports.cpp` and `R/RcppExports.R` are automatically created (or updated) and contain the code necessary to expose your C++ functions in R \bigskip
+
+- You C++ code will be compiled during your package installation \bigskip
+
+## Rcpp in a package (3)
+
+:::::: {.columns}
+::: {.column width="50%"}
+
+- Compatible with `roxygen2` doc generation \bigskip
+
+- `Rcpp::compileAttributes()` converts `//'` C++ doc comment chunks to `#'` `roxygen2` doc comment chunks in the `R/RcppExports.R` file
 
 
+:::
+::: {.column width="50%"}
+
+\tiny
+```C++
+#include <Rcpp.h>
+
+using namespace Rcpp;
+
+//' Do something
+//' @author someone
+//' @description
+//' This function does something
+//'
+//' @param x An integer vector
+//' @export
+// [[Rcpp::export]]
+void my_fun(IntegerVector a) {
+    // do something...
+}
+```
+
+:::
+::::::
+
+## The Rcpp ecosystem (1)
+
+- [`RcppEigen`](https://cran.r-project.org/package=RcppEigen): 'Rcpp' Integration for the [`Eigen`](https://eigen.tuxfamily.org) Templated Linear Algebra Library \bigskip
+
+- [`RcppArmadillo`](https://cran.r-project.org/package=RcppArmadillo): 'Rcpp' Integration for the [`Armadillo`](http://arma.sourceforge.net/) Templated Linear Algebra Library \bigskip
+
+- [`RcppGSL`](https://cran.r-project.org/package=RcppGSL): Rcpp Integration for [`GNU GSL`](https://www.gnu.org/software/gsl/) Vectors and Matrices \bigskip
+
+- [`BH`](https://cran.r-project.org/package=BH)´: [`Boost`](https://www.boost.org/) C++ Header Files ("a set of libraries providing support for tasks and structures such as linear algebra, pseudo-random number generation, multi-threading, image processing, regular expressions, and unit testing") \bigskip
+
+- and more...
+
+## The Rcpp ecosystem (2)
+
+How to use the previous C++ libraries in your package ? \bigskip
+
+1. Install the corresponding R package (with `install.packages("<pkg>")`) \bigskip
+
+2. Add `LinkingTo: <pkg>` in your `DESCRIPTION` file \bigskip
+
+3. Add the comment `// Rcpp::depends(<pkg>)]]` when including the corresponding library in your C++ code, e.g.:
+
+```C++
+#include <RcppArmadillo.h>
+// Rcpp::depends(RcppArmadillo)]]
+```
+
+4. Use the C++ corresponding library in a standard way in your C++ code
+
+
+## reticulate: R Interface to Python
+
+[CRAN page](https://cran.r-project.org/package=reticulate) and [webpage](https://rstudio.github.io/reticulate/) \bigskip
+
+- Calling Python from R ([dedicated vignette](https://rstudio.github.io/reticulate/articles/package.html))
+
+```R
+library(reticulate)
+scipy <- import("scipy")
+scipy$amin(c(1,3,5,7))
+```
+
+- Conversion from R to Python matrix/array ([dedicated vignette](https://rstudio.github.io/reticulate/articles/arrays.html)) \bigskip
+
+- Python code chunks in Rmarkdown ([dedicated vignette](https://rstudio.github.io/reticulate/articles/r_markdown.html)])
+
+## Managing Python from R
+
+- Python Version Configuration ([dedicated vignette](https://rstudio.github.io/reticulate/articles/versions.html) and [help page](https://rstudio.github.io/reticulate/reference/use_python.html)) \bigskip
+
+- Use virtual environment with `reticulate::use_virtualenv()` and `reticulate::use_condaenv()` \bigskip
+
+## Using Python code in an R package
+
+- Using `reticulate` in a R package ([dedicated vignette](https://rstudio.github.io/reticulate/articles/package.html)) \bigskip
+
+- Configuring Python dependencies of your R
+package ([dedicated vignette](https://rstudio.github.io/reticulate/articles/python_dependencies.html)) \bigskip
+
+
+# Control your R environment
+
+## Configuring R
+
+- References: [here](https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf) and [here](https://rstats.wtf/r-startup.html) \bigskip
+
+- Configure where you install packages and from where you load packages (i.e. in which directory on your system) \bigskip
+
+- Setup a default CRAN mirror for package installation \bigskip
+
+- Define default R objects, functions that will be available without additional file sourcing \bigskip
+
+- Modify R global options (see the functions `options()` and `getOption()` to check R global options)
+
+## .Renviron: configure the environment where R is run (1)
+
+`.Renviron` = a file defining environment variables (as in `bash`) with the following syntax  (**!!not R code!!**):
+
+```
+Key1=value1
+Key2=value2
+...
+```
+
+To edit your `.Renviron` file, you can use `usethis::edit_r_environ()`.
+
+## .Renviron: configure the environment where R is run (2)
+
+- To modify the directory where packages are installed^[by `install.package()`, `devtools::install()`, `remotes::install_from_xxx()`] and loaded from^[by `library()` or `require()`]: you can set^[default value is ``R_LIBS_USER=~/R/%p/%v`] `R_LIBS_USER=/path/to/my/lib/dir` (useful to have project-specific package installation^[to avoid package version conflict between project]) \bigskip
+
+- Define environment variables (e.g. `MYVAR=5`) that will be available in R (with `Sys.getenv("MYVAR")`) or have an effect an your R code behavior \bigskip
+
+## Where storing the .Renviron file
+
+R tries to use an `.Renviron` file in the following order:
+
+1. in the working directory where R is started (if existing), e.g. in your RStudio project root directory \medskip
+
+2. in your home directory (if existing) \medskip
+
+**Note:** You can modify this behavior by setting (outside of R/RStudio^[as in your bash environment]) the following environment variable: `R_ENVIRON_USER=/path/to/my/.Renviron` \medskip
+
+**Anyway:** R has a global `Renviron.site` file that is read first. Using your own `.Renviron` file allows you to modify the default environment defined in this file. \medskip
+
+## .Rprofile: configure and modify your R session
+
+- `.Rprofile` = an R source file that will be run at R startup (after `.Renviron` was read) \bigskip
+
+- What for ?
+  - define your own default R objects/functions
+  - write a startup message
+  - modify R global options
+  - etc. \bigskip
+
+To edit your `.Rprofile` file, you can use `usethis::edit_r_profile()`.
+
+## .Rprofile: an example
+
+```R
+# setup a default CRAN repository
+options(repos = c(CRAN = "https://cran.rstudio.org"))
+
+# modify an option only in interactive mode
+if(interactive()) {
+    options(width = 120)
+}
+```
+
+**Note:** interactive mode = as in R console^[versus script mode (like scripts run by `Rscript`)] (in RStudio or in a terminal) \bigskip
+
+
+## Where storing the .Rprofile file
+
+R tries to use an `.profile` file in the following order:
+
+1. in the working directory where R is started (if existing), e.g. in your RStudio project root directory \medskip
+
+2. in your home directory (if existing) \medskip
+
+**Note:** You can modify this behavior by setting (outside of R/RStudio^[as in your bash environment]) the following environment variable: `R_PROFILE_USER=/path/to/my/.Renviron` \medskip
+
+**Anyway:** R has a global `Rprofile.site` file that is read first and using your own `.Rprofile` file allows you to modify the default R session defined in this file. \medskip
+
+## .Renviron/.Rprofile and reproducibility
+
+**Attention:** you should be careful that your code is usable without your `.Renviron` and `.Rprofile` files \bigskip
+
+- `.Renviron` and `.Rprofile` files are personal files, another user may configure its environment differently \bigskip
+
+- **Example:** charging packages or modifying (global or packages) options that have an impact on output values^[e.g. `options(stringsAsFactors = FALSE)`] in your `.Rprofile` file may affect the reproducibility of your code (i.e. the results can be different or you code can be broken without your `.Rprofile` file) \bigskip
+
+# The end
+
+## {.standout}
+
+Questions ?
