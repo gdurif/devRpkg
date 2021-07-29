@@ -88,4 +88,21 @@ A wide variety of tools to help you:
 
 ## Outline
 
-WRITE ME
+\footnotesize
+
+1. The essentials to write your package ([`.md`](.content/1_essential.md) and [`.pdf`](.content/1_essential.pdf))
+
+- Getting started
+- R package structure
+- Workflow
+
+
+2. Going further with your R package development ([`.md`](.content/2_additonal.md) and [`.pdf`](.content/2_additonal.pdf))
+
+- Getting started
+- Digression: Good practice for software development and programming (not just in R)
+- Test your functions
+- Sharing (your code) is caring
+- Advanced documentation
+- Non R code
+- Control your R environment

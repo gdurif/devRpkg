@@ -13,9 +13,18 @@ classoption: "aspectratio=169,12pt"
 
 # Getting started
 
+## R packages to help you create R packages
+
+- [`usethis`](https://usethis.r-lib.org): to automate package and project creation/configuration/setup  \bigskip
+- [`devtools`](https://devtools.r-lib.org): complete collection of development tools \bigskip
+- [`roxygen2`](https://roxygen2.r-lib.org): to document your code and generate help pages \bigskip
+- [`lintr`](https://cran.r-project.org/package=lintr) to review your code ("adherence to a given style, syntax errors and possible semantic issues") \bigskip
+
 ## Note
 
-If you are not working from Rstudio, you will not benefit from all its functionality but it is possible to do everything from the R command line.
+- If you are not working from Rstudio, you will not benefit from all its functionality but it is possible to do everything from the R command line. \bigskip
+
+- In R: `pkg::fun()` refers to the function `fun()` defined in the package `pkg`.
 
 ## Setup your environment
 
@@ -578,3 +587,9 @@ Possible to write every files manually for more advanced users.
 See <https://devtools.r-lib.org/reference/index.html> \bigskip
 
 (`devtools` exports several functions from other development-oriented packages)
+
+# The end
+
+## {.standout}
+
+Questions ?
