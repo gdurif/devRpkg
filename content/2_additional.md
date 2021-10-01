@@ -113,9 +113,9 @@ Examples of software forge
 :::::: {.columns}
 ::: {.column width="50%"}
 
-- To enable `testthat` in your package, run [`usethis::use_testthat()`](https://usethis.r-lib.org/reference/use_testthat.html) \bigskip
+- To enable `testthat` in your package: [`usethis::use_testthat()`](https://usethis.r-lib.org/reference/use_testthat.html) \bigskip
 
-- To create [`usethis::use_test()`](https://usethis.r-lib.org/reference/use_r.html) (e.g. ``usethis::use_test("feature1")`) \bigskip
+- To create a test case: [`usethis::use_test()`](https://usethis.r-lib.org/reference/use_r.html) (e.g. `usethis::use_test("feature1")`) \bigskip
 
 - Test file example:
 ```R
@@ -180,7 +180,7 @@ tests
 
 ## CRAN
 
-- [Strict policy to accept a package](https://cran.r-project.org/web/packages/policies.html) \bigskip
+- [Strict policy to accept a package](https://cran.r-project.org/web/packages/policies.html) (**READ IT!**) \bigskip
 
 - Pipeline
   1. [`devtools::build()`](https://devtools.r-lib.org//reference/build.html) (or `R CMD build`)
@@ -276,6 +276,8 @@ remotes::install_git(
 - You define a set of actions (e.g. tests and checks) that are run after each commit, or before any pull/merge request (configurable)
 
 # Non R code
+
+## interfacing language
 
 ## Rcpp: Seamless R and C++ Integration
 
@@ -444,6 +446,18 @@ package ([dedicated vignette](https://rstudio.github.io/reticulate/articles/pyth
 
 
 # Control your R environment
+
+## renv
+
+https://rstudio.github.io/renv/articles/renv.html
+
+## packrat
+
+https://github.com/rstudio/packrat/
+
+https://rstudio.github.io/packrat/
+
+
 
 ## Configuring R
 

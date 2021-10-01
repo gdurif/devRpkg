@@ -478,11 +478,11 @@ SystemRequirements: C++11
 
 ## Manage your dependencies (3)
 
-- [`usethis::use_package()`](https://usethis.r-lib.org/reference/use_package.html) to update `Imports` or `Sugggests` fields \bigskip
+- [`usethis::use_package()`](https://usethis.r-lib.org/reference/use_package.html) to update `Imports` or `Suggests` fields \bigskip
 
 - More details at <https://r-pkgs.org/description.html#dependencies>
 
-## Manage your dependences (4)
+## Manage your dependencies (4)
 
 Imported objects (functions, dataset) should be declared in the `NAMESPACE` file \bigskip
 
