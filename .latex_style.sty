@@ -2,6 +2,8 @@
 \usepackage{fontawesome}
 \let\orighref\href
 \renewcommand{\href}[2]{\orighref{#1}{#2$^{\,\text{\tiny\faExternalLink}}$}}
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
 
 % texttt redefinition (to add a background color)
 \usepackage{color}
