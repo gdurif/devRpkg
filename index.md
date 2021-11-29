@@ -36,8 +36,8 @@ Many [**hyperlinks**](https://en.wikipedia.org/wiki/Hyperlink) are directly embe
 - [Karl Broman](https://kbroman.org/) **tutorial**: _R package primer_ ([web version](https://kbroman.org/pkg_primer/) and [sources](https://github.com/kbroman/pkg_primer/)) \bigskip
 - [Hadley Wickham](http://had.co.nz/) and [Jenny Bryan](https://jennybryan.org/) **book**: _R packages_ ([web version](https://r-pkgs.org/) and [sources](https://github.com/hadley/r-pkgs)) \bigskip
 - [Hilary Parker](https://hilaryparker.com)
-[**tutorial** on writing R packages](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) \bigskip
-- [Rstudio **cheatsheets**](https://github.com/rstudio/cheatsheets) on [package development](https://raw.githubusercontent.com/rstudio/cheatsheets/master/package-development.pdf) and [Rstudio IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
+[**tutorial**](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) on writing R packages \bigskip
+- Rstudio [**cheatsheets**](https://github.com/rstudio/cheatsheets) on [package development](https://raw.githubusercontent.com/rstudio/cheatsheets/master/package-development.pdf) and [Rstudio IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rstudio-ide.pdf)
 
 ## What is an R package?
 
@@ -90,14 +90,14 @@ A wide variety of tools to help you:
 
 \footnotesize
 
-1. The essentials to write your package ([`.md`](.content/1_essential.md) and [`.pdf`](.content/1_essential.pdf))
+1. The essentials to write your package ([`.md`](content/1_essential.md) and [`.pdf`](content/1_essential.pdf))
 
 - Getting started
 - R package structure
 - Workflow
 
 
-2. Going further with your R package development ([`.md`](.content/2_additonal.md) and [`.pdf`](.content/2_additonal.pdf))
+2. Going further with your R package development ([`.md`](content/2_additional.md) and [`.pdf`](content/2_additional.pdf))
 
 - Getting started
 - Digression: Good practice for software development and programming (not just in R)
