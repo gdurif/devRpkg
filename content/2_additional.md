@@ -1,9 +1,9 @@
 ---
 title: "Developing an R package: a tutorial"
 subtitle: "Going further with your R package development"
-author: "Ghislain Durif"
-institute: "CNRS -- IMAG (Montpellier, France)"
-date: July 2021
+author: "Ghislain Durif (https://gdurif.perso.math.cnrs.fr/)"
+institute: "CNRS -- LBMC (Lyon, France)"
+date: July 2022
 output: 
   binb::metropolis:
     includes:
@@ -15,9 +15,9 @@ classoption: "aspectratio=169,12pt"
 
 ## Additional R packages to help you create R packages
 
-- [`testthat`](https://testthat.r-lib.org/): to implement automatic tests of your functions \bigskip
-- [`remotes`](https://remotes.r-lib.org): to install package from anywhere (integrated in `devtools`) \bigskip
-- [`rmarkdown`](https://rmarkdown.rstudio.com) and [`knitr`](https://yihui.org/knitr): to create detailed documentation materials and notebooks (code showcase) \bigskip
+- [`testthat`](https://testthat.r-lib.org/) to implement automatic tests of your functions \bigskip
+- [`remotes`](https://remotes.r-lib.org) to install package from anywhere (integrated in `devtools`) \bigskip
+- [`rmarkdown`](https://rmarkdown.rstudio.com) and [`knitr`](https://yihui.org/knitr) to create detailed documentation materials and notebooks (code showcase) \bigskip
 - [`pkgdown`](https://pkgdown.r-lib.org/) to create a website for your package \bigskip
 
 ## Setup your environment
@@ -393,7 +393,7 @@ void my_fun(IntegerVector a) {
 
 - [`RcppGSL`](https://cran.r-project.org/package=RcppGSL): Rcpp Integration for [`GNU GSL`](https://www.gnu.org/software/gsl/) Vectors and Matrices \bigskip
 
-- [`BH`](https://cran.r-project.org/package=BH)´: [`Boost`](https://www.boost.org/) C++ Header Files ("a set of libraries providing support for tasks and structures such as linear algebra, pseudo-random number generation, multi-threading, image processing, regular expressions, and unit testing") \bigskip
+- [`BH`](https://cran.r-project.org/package=BH): [`Boost`](https://www.boost.org/) C++ Header Files ("a set of libraries providing support for tasks and structures such as linear algebra, pseudo-random number generation, multi-threading, image processing, regular expressions, and unit testing") \bigskip
 
 - and more...
 
@@ -405,11 +405,11 @@ How to use the previous C++ libraries in your package ? \bigskip
 
 2. Add `LinkingTo: <pkg>` in your `DESCRIPTION` file \bigskip
 
-3. Add the comment `// Rcpp::depends(<pkg>)]]` when including the corresponding library in your C++ code, e.g.:
+3. Add the comment `// [[Rcpp::depends(<pkg>)]]` when including the corresponding library in your C++ code, e.g.:
 
 ```C++
 #include <RcppArmadillo.h>
-// Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::depends(RcppArmadillo)]]
 ```
 
 4. Use the C++ corresponding library in a standard way in your C++ code
@@ -450,12 +450,6 @@ package ([dedicated vignette](https://rstudio.github.io/reticulate/articles/pyth
 ## renv
 
 https://rstudio.github.io/renv/articles/renv.html
-
-## packrat
-
-https://github.com/rstudio/packrat/
-
-https://rstudio.github.io/packrat/
 
 
 
