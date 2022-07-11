@@ -2,7 +2,7 @@
 
 ## Author
 
-Ghislain Durif (https://gdurif.perso.math.cnrs.fr/), CNRS -- IMAG (Montpellier, France)
+Ghislain Durif (https://gdurif.perso.math.cnrs.fr/), CNRS -- LBMC (Lyon, France)
 
 License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
