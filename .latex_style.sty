@@ -1,9 +1,11 @@
 % Hyperlink redefinition, symbol included in link:
-\usepackage{fontawesome}
-\let\orighref\href
-\renewcommand{\href}[2]{\orighref{#1}{#2$^{\,\text{\tiny\faExternalLink}}$}}
-\definecolor{links}{HTML}{2A1B81}
-\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!50!black}
+}
 
 % texttt redefinition (to add a background color)
 \usepackage{color}
